@@ -13,4 +13,13 @@ const block = PropTypes.shape({
   timestamp: PropTypes.number,
 });
 
-export default { transaction, block };
+const accountList = PropTypes.shape({
+  accounts: PropTypes.arrayOf(PropTypes.string)
+});
+
+const account = PropTypes.shape({
+  account: PropTypes.string.isRequired,
+  balance: PropTypes.number.isRequired,
+});
+
+export default { transaction, block, account };

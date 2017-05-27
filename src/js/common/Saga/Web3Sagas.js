@@ -30,7 +30,17 @@ export function* web3APICall(action) {
     const result = yield call(callWeb3MethodAsPromise, method, args);
     if (schema) {
       yield put({ type: successActionType, ...normalize(result, schema) });
-    } else {
+    }
+    else if(successActionType === 'GET_ACCOUNTS_SUCCESS') {
+      //docs say getAccounts returns array, but sems like it selects current account
+      console.log("acct " + result)
+      console.log(successActionType)
+      console.log(method)
+      console.log(args)
+      yield put({ type: successActionType, result });
+
+    }
+    else {
       yield put({ type: successActionType, result });
     }
   } catch (e) {
