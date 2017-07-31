@@ -1,6 +1,9 @@
 # Ethereact
 
 Reading blocks and transactions from the Ethereum blockchain with React/Redux.
+Checking Current Account.
+Checking Balance of current account
+Sending Transaction from/to selected account
 
 ## Development
 
@@ -23,6 +26,23 @@ See all available tasks in `package.json` at `scripts`:
 
 See http://www.material-ui.com/#/customization/themes for other components example.
 
+## TestRPC
+
+Metamask allows import of testrpc private keys
+
+* from shell/cmd prompt run: TestRPC
+* Within metamask import the first local private keys from the testrpc
+* npm run dev
+* npm start
+* navigate localhost:8080
+* enter an amount in default value
+* click Send Transaction
+
+## Lint save
+
+
+windows: eslint -c %cd%\.eslintrc %cd%\**\*.js --fix
+mac/nix: eslint -c $pwd\.eslintrc $pwd\**\*.js --fix
 
 ### Web3
 

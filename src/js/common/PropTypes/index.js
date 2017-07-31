@@ -14,7 +14,7 @@ const block = PropTypes.shape({
 });
 
 const accountList = PropTypes.shape({
-  accounts: PropTypes.arrayOf(PropTypes.string)
+  accounts: PropTypes.arrayOf(PropTypes.string),
 });
 
 const account = PropTypes.shape({

@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import 'babel-polyfill';
 import createLogger from 'redux-logger';
@@ -8,7 +8,8 @@ import rootSaga from './Saga';
 
 const saga = createSagaMiddleware();
 const logger = createLogger();
-const store = applyMiddleware(saga, logger)(createStore)(rootReducer, initialState);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() || compose;
+const store = applyMiddleware(saga, logger)(createStore, composeEnhancers)(rootReducer, initialState);
 
 saga.run(rootSaga);
 

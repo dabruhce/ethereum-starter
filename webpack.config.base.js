@@ -1,6 +1,6 @@
-'use strict';
 
-var path = require('path');
+
+const path = require('path');
 
 module.exports = {
   devtool: 'source-map',
@@ -16,7 +16,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
@@ -24,9 +24,9 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json',
       },
-    ]
+    ],
   },
   entry: path.join(__dirname, './src/js/client/index.js'),
   output: {
@@ -35,6 +35,6 @@ module.exports = {
     filename: 'er.js',
   },
   resolve: {
-    extensions: ['', '.js']
-  }
+    extensions: ['', '.js'],
+  },
 };

@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import Home from '../Component/Page/Home';
 import { fetchCurrentBlockNumber } from '../Action/BlockActions';
 import { fetchAccount } from '../Action/AccountsActions';
+import { sendTransactionRequest, sendTransaction } from '../Action/SendTransactionActions';
+import { fetchBalance } from '../Action/BalanceActions';
+// import { sendTransactionRequest } from '../Action/SendTransactionActions';
 
 function mapStateToProps(state) {
   return {
@@ -10,6 +13,8 @@ function mapStateToProps(state) {
     ),
     currentBlockNumber: state.currentBlock,
     currentAccount: state.account,
+    balance: state.balance,
+//    sendTransactionRequest: state.sendTransactionRequest,
   };
 }
 
@@ -17,6 +22,9 @@ export default connect(
   mapStateToProps,
   {
     fetchCurrentBlock: fetchCurrentBlockNumber,
-    fetchAccount: fetchAccount,
+    fetchAccount,
+    fetchBalance,
+    sendTransaction,
+    sendTransactionRequest,
   }
 )(Home);

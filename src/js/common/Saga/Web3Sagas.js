@@ -3,6 +3,8 @@ import { takeEvery } from 'redux-saga';
 import { normalize } from 'normalizr';
 import { WEB3_API_CALL } from '../Constant';
 import Web3 from '../Ethereum/Web3';
+import { fetchBalance } from '../Action/BalanceActions';
+import { sendTransactionRequest } from '../Action/SendTransactionActions';
 
 const createCallback = (resolve, reject) => (error, result) => {
   if (!error) {
@@ -25,22 +27,21 @@ export function* web3APICall(action) {
   const [method, successActionType, failureActionType] = action.types;
   const args = action.args || [];
   const schema = action.schema;
+  console.log(`provider is: ${Web3.currentProvider}`);
 
   try {
     const result = yield call(callWeb3MethodAsPromise, method, args);
+
     if (schema) {
       yield put({ type: successActionType, ...normalize(result, schema) });
-    }
-    else if(successActionType === 'GET_ACCOUNTS_SUCCESS') {
-      //docs say getAccounts returns array, but sems like it selects current account
-      console.log("acct " + result)
-      console.log(successActionType)
-      console.log(method)
-      console.log(args)
+    } else if (successActionType === 'GET_BALANCE_SUCCESS') {
       yield put({ type: successActionType, result });
-
-    }
-    else {
+    } else if (successActionType === 'SEND_TRANSACTION_SUCCESS') {
+      yield put({ type: successActionType, result });
+    } else if (successActionType === 'GET_ACCOUNTS_SUCCESS') {
+      yield put({ type: successActionType, result });
+      yield put({ type: 'GET_BALANCE_REQUESTED', account: result.toString() });
+    } else {
       yield put({ type: successActionType, result });
     }
   } catch (e) {

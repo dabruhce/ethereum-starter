@@ -1,0 +1,4 @@
+export const GET_BALANCE = 'getBalance';
+export const GET_BALANCE_SUCCESS = 'GET_BALANCE_SUCCESS';
+export const GET_BALANCE_ERROR = 'GET_BALANCE_ERROR';
+export const GET_BALANCE_REQUESTED = 'GET_BALANCE_REQUESTED';

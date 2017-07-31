@@ -5,5 +5,6 @@ export default {
   [BlockSchema.getKey()]: {},
   [TransactionSchema.getKey()]: {},
   currentBlock: 0,
-  account: '0'
+  account: '0',
+  balance: '0',
 };
